@@ -2832,7 +2832,7 @@ MonoBehaviour:
   MRTire: {fileID: 289960917}
   Truck: {fileID: 1504688874}
   TruckBody: {fileID: 994582643}
-  activeCameraNumber: 2
+  activeCameraNumber: 1
 --- !u!114 &1504688880
 MonoBehaviour:
   m_ObjectHideFlags: 0

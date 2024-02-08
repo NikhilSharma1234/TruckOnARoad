@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
         rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowData.Add(rowDataTemp);
-        if ((Truck.transform.position.z) >= 190 && writingFlag == true) {
+        if ((Truck.transform.position.z) >= 640 && writingFlag == true) {
             writingFlag = false;
             string[][] output = new string[rowData.Count][];
 

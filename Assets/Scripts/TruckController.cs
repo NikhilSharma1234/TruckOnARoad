@@ -37,23 +37,31 @@ public class PlayerController : MonoBehaviour
     public GameObject TruckBody;
     private bool writingFlag;
     private List<string[]> rowData = new List<string[]>();
+    private Camera[] cameraList = new Camera[12];
+    public int activeCameraNumber;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Get rigid body component from truck
         rb = GetComponent<Rigidbody>();
-        Camera1.enabled = false;
-        Camera2.enabled = true;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
+
+        // Populate camera list Camera List
+        cameraList[0] = Camera1;
+        cameraList[1] = Camera2;
+        cameraList[2] = Camera3;
+        cameraList[3] = Camera4;
+        cameraList[4] = Camera5;
+        cameraList[5] = Camera6;
+        cameraList[6] = Camera7;
+        cameraList[7] = Camera8;
+        cameraList[8] = Camera9;
+        cameraList[9] = Camera10;
+        cameraList[10] = Camera11;
+        cameraList[11] = Camera12;
+
+        // Set desired camera to be active
+        cameraSwitch(activeCameraNumber);
 
         Renderer renderer = FLTire.GetComponent<Renderer>();
         tireRadius = (renderer.bounds.size.y/2);
@@ -89,21 +97,18 @@ public class PlayerController : MonoBehaviour
     // Following method is used to retrive the relative path as device platform
     private string getPath(){
         #if UNITY_EDITOR
-        return Application.dataPath +"/CSV/"+"Saved_data2.csv";
+        return Application.dataPath +"/CSV/"+"Saved_data"+activeCameraNumber+".csv";
         #elif UNITY_ANDROID
-        return Application.persistentDataPath+"Saved_data2.csv";
+        return Application.persistentDataPath+"Saved_data"+activeCameraNumber+".csv";
         #elif UNITY_IPHONE
-        return Application.persistentDataPath+"/"+"Saved_data2.csv";
+        return Application.persistentDataPath+"/"+"Saved_data"+activeCameraNumber+".csv";
         #else
-        return Application.dataPath +"/"+"Saved_data2.csv";
+        return Application.dataPath +"/"+"Saved_data"+activeCameraNumber+".csv";
         #endif
     }
 
     void FixedUpdate()
     {
-        // Debug.Log((((FLTire.transform.position.z)+450)/10)+61);
-        // Debug.Log(FLTire.GetComponent<MeshRenderer>().bounds.size);
-        //Debug.Log(Time.deltaTime);
         Truck.transform.Translate(Vector3.forward * speed);
         float distanceTraveled = 15 * Time.deltaTime;
         float rotationInRadians = distanceTraveled / (tireRadius);
@@ -158,237 +163,53 @@ public class PlayerController : MonoBehaviour
         Application.Quit();
         #endif
         }
-        
-        // if (Input.GetKey(KeyCode.UpArrow)) {
-        //     rb.AddForce(transform.forward * speed);
-        // float distanceTraveled = 20 * Time.deltaTime;
-        // float rotationInRadians = distanceTraveled / (tireRadius);
-        // float rotationInDegrees = rotationInRadians * Mathf.Rad2Deg;
-        // FLTire.transform.Rotate(rotationInDegrees, 0, 0);
-        // FRTire.transform.Rotate(rotationInDegrees, 0, 0);
-        // BLTire.transform.Rotate(rotationInDegrees, 0, 0);
-        // BRTire.transform.Rotate(rotationInDegrees, 0, 0);
-        // MLTire.transform.Rotate(rotationInDegrees, 0, 0);
-        // MRTire.transform.Rotate(rotationInDegrees, 0, 0);
-        // }
-        // if (Input.GetKey(KeyCode.DownArrow)) {
-        //     rb.AddForce(-transform.forward * speed);
-        //     float distanceTraveled = speed * Time.deltaTime;
-        //     float rotationInRadians = distanceTraveled / (tireRadius);
-        //     float rotationInDegrees = rotationInRadians * Mathf.Rad2Deg;
-        //     FLTire.transform.Rotate(-rotationInDegrees, 0, 0);
-        //     FRTire.transform.Rotate(-rotationInDegrees, 0, 0);
-        //     BLTire.transform.Rotate(-rotationInDegrees, 0, 0);
-        //     BRTire.transform.Rotate(-rotationInDegrees, 0, 0);
-        //     MLTire.transform.Rotate(-rotationInDegrees, 0, 0);
-        //     MRTire.transform.Rotate(-rotationInDegrees, 0, 0);
-        // }
+
         if (Input.GetKey(KeyCode.Alpha1)) {
-            CameraOne();
+            cameraSwitch(1);
         }
         if (Input.GetKey(KeyCode.Alpha2)) {
-            CameraTwo();
+            cameraSwitch(2);
         }
         if (Input.GetKey(KeyCode.Alpha3)) {
-            CameraThree();
+            cameraSwitch(3);
         }
         if (Input.GetKey(KeyCode.Alpha4)) {
-            CameraFour();
+            cameraSwitch(4);
         }
         if (Input.GetKey(KeyCode.Alpha5)) {
-            CameraFive();
+            cameraSwitch(5);
         }
         if (Input.GetKey(KeyCode.Alpha6)) {
-            CameraSix();
+            cameraSwitch(6);
         }
         if (Input.GetKey(KeyCode.Alpha7)) {
-            CameraSeven();
+            cameraSwitch(7);
         }
         if (Input.GetKey(KeyCode.Alpha8)) {
-            CameraEight();
+            cameraSwitch(8);
         }
         if (Input.GetKey(KeyCode.Alpha9)) {
-            CameraNine();
+            cameraSwitch(9);
         }
         if (Input.GetKey(KeyCode.Q)) {
-            CameraTen();
+            cameraSwitch(10);
         }
         if (Input.GetKey(KeyCode.W)) {
-            CameraEleven();
+            cameraSwitch(11);
         }
         if (Input.GetKey(KeyCode.E)) {
-            CameraTwelve();
+            cameraSwitch(12);
         }
     }
-    void CameraOne() {
-        Camera1.enabled = true;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
 
-    void CameraTwo() {
-        Camera1.enabled = false;
-        Camera2.enabled = true;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-
-    void CameraThree() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = true;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-
-    void CameraFour() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = true;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraFive() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = true;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraSix() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = true;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraSeven() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = true;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraEight() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = true;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraNine() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = true;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraTen() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = true;
-        Camera11.enabled = false;
-        Camera12.enabled = false;
-    }
-    void CameraEleven() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = true;
-        Camera12.enabled = false;
-    }
-    void CameraTwelve() {
-        Camera1.enabled = false;
-        Camera2.enabled = false;
-        Camera3.enabled = false;
-        Camera4.enabled = false;
-        Camera5.enabled = false;
-        Camera6.enabled = false;
-        Camera7.enabled = false;
-        Camera8.enabled = false;
-        Camera9.enabled = false;
-        Camera10.enabled = false;
-        Camera11.enabled = false;
-        Camera12.enabled = true;
+    void cameraSwitch(int cameraNumber) {
+        for(int i = 0; i < 12; i++){
+            Camera currentCamera = cameraList[i];
+            if (cameraNumber == (i + 1)) {
+                currentCamera.enabled = true;
+                continue;
+            }
+            currentCamera.enabled = false;
+        }
     }
 }

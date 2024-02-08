@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     public GameObject FRTire;
     public GameObject MLTire;
     public GameObject MRTire;
-    private float tireRadius;
+    private float frontTireHalfWidth;
+    private float rearAndMiddleTireHalfWidth;
     public GameObject Truck;
     public GameObject TruckBody;
     private bool writingFlag;
@@ -63,8 +64,14 @@ public class PlayerController : MonoBehaviour
         // Set desired camera to be active
         cameraSwitch(activeCameraNumber);
 
-        Renderer renderer = FLTire.GetComponent<Renderer>();
-        tireRadius = (renderer.bounds.size.y/2);
+        // Get half of front tire width
+        Renderer FLTireRenderer = FLTire.GetComponent<Renderer>();
+        frontTireHalfWidth = (FLTireRenderer.bounds.size.x/2);
+
+        // Get half of middle and back tire width (they are equal in size)
+        Renderer MLTireRenderer = MLTire.GetComponent<Renderer>();
+        rearAndMiddleTireHalfWidth = (MLTireRenderer.bounds.size.x/2);
+
         writingFlag = true;
         // Creating First row of titles manually..
         string[] rowDataTemp = new string[12];
@@ -81,16 +88,13 @@ public class PlayerController : MonoBehaviour
         rowDataTemp[10] = "BR_X";
         rowDataTemp[11] = "BR_Y";
         rowData.Add(rowDataTemp);
-        InvokeRepeating("TrackWheels", 0f, 1f);
+        InvokeRepeating("RepeatingFunction", 0f, 1f);
     }
 
-    void TrackWheels()
+    // Placeholder for invoking repeating function every 1 second
+    void RepeatingFunction()
     {
-        // Calculate truck speed by taking the differnce of two points from below output
-        Debug.Log(BLTire.transform.position);
-        
-        // Truck Dimensions
-        //Debug.Log(TruckBody.GetComponent<MeshRenderer>().bounds.size);
+
 
     }
 
@@ -111,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         Truck.transform.Translate(Vector3.forward * speed);
         float distanceTraveled = 15 * Time.deltaTime;
-        float rotationInRadians = distanceTraveled / (tireRadius);
+        float rotationInRadians = distanceTraveled / (frontTireHalfWidth);
         float rotationInDegrees = rotationInRadians * Mathf.Rad2Deg;
         FLTire.transform.Rotate(rotationInDegrees, 0, 0);
         FRTire.transform.Rotate(rotationInDegrees, 0, 0);
@@ -120,20 +124,20 @@ public class PlayerController : MonoBehaviour
         MLTire.transform.Rotate(rotationInDegrees, 0, 0);
         MRTire.transform.Rotate(rotationInDegrees, 0, 0);
         string[] rowDataTemp = new string[12];
-        rowDataTemp[0] = ((((FLTire.transform.position.z)+450)/10)+61).ToString("0.00");
-        rowDataTemp[1] = (((FLTire.transform.position.x*-1)/10)+0.138988).ToString("0.00");
-        rowDataTemp[2] = ((((FRTire.transform.position.z)+450)/10)+61).ToString("0.00");
-        rowDataTemp[3] = (((FRTire.transform.position.x*-1)/10)+0.138988).ToString("0.00");
-        rowDataTemp[4] = ((((MLTire.transform.position.z)+450)/10)+61).ToString("0.00");
-        rowDataTemp[5] = (((MLTire.transform.position.x*-1)/10)+0.138988).ToString("0.00");
-        rowDataTemp[6] = ((((MRTire.transform.position.z)+450)/10)+61).ToString("0.00");
-        rowDataTemp[7] = (((MRTire.transform.position.x*-1)/10)+0.138988).ToString("0.00");
-        rowDataTemp[8] = ((((BLTire.transform.position.z)+450)/10)+61).ToString("0.00");
-        rowDataTemp[9] = (((BLTire.transform.position.x*-1)/10)+0.138988).ToString("0.00");
-        rowDataTemp[10] = ((((BRTire.transform.position.z)+450)/10)+61).ToString("0.00");
-        rowDataTemp[11] = (((BRTire.transform.position.x*-1)/10)+0.138988).ToString("0.00");
+        rowDataTemp[0] = (((FLTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[1] = (((FLTire.transform.position.x*-1)+frontTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[2] = (((FRTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[3] = (((FRTire.transform.position.x*-1)-frontTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[4] = (((MLTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[5] = (((MLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[6] = (((MRTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[7] = (((MRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[8] = (((BLTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[9] = (((BLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowData.Add(rowDataTemp);
-        if ((Truck.transform.position.z+450) >= 640 && writingFlag == true) {
+        if ((Truck.transform.position.z) >= 190 && writingFlag == true) {
             writingFlag = false;
             string[][] output = new string[rowData.Count][];
 

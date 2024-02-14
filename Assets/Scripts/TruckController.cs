@@ -88,14 +88,56 @@ public class PlayerController : MonoBehaviour
         rowDataTemp[10] = "BR_X";
         rowDataTemp[11] = "BR_Y";
         rowData.Add(rowDataTemp);
-        InvokeRepeating("RepeatingFunction", 0f, 1f);
+        InvokeRepeating("RepeatingFunction", 0f, 0.0333333333f);
     }
 
-    // Placeholder for invoking repeating function every 1 second
+    // Invoking repeating function to record tire positions every 0.0033333333 seconds
     void RepeatingFunction()
     {
+        string[] rowDataTemp = new string[12];
+        rowDataTemp[0] = (((FLTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[1] = (((FLTire.transform.position.x*-1)+frontTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[2] = (((FRTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[3] = (((FRTire.transform.position.x*-1)-frontTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[4] = (((MLTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[5] = (((MLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[6] = (((MRTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[7] = (((MRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[8] = (((BLTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[9] = (((BLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
+        rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowData.Add(rowDataTemp);
+        if ((Truck.transform.position.z) >= 640 && writingFlag == true) {
+                writingFlag = false;
+                string[][] output = new string[rowData.Count][];
 
+            for(int i = 0; i < output.Length; i++){
+                output[i] = rowData[i];
+            }
 
+            int     length         = output.GetLength(0);
+            string     delimiter     = ",";
+
+            StringBuilder sb = new StringBuilder();
+            
+            for (int index = 0; index < length; index++)
+                sb.AppendLine(string.Join(delimiter, output[index]));
+            
+            
+            string filePath = getPath();
+
+            StreamWriter outStream = System.IO.File.CreateText(filePath);
+            outStream.WriteLine(sb);
+            outStream.Close();
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #elif UNITY_WEBPLAYER
+            Application.OpenURL(webplayerQuitURL);
+            #else
+            Application.Quit();
+            #endif
+        }
     }
 
     // Following method is used to retrive the relative path as device platform
@@ -123,50 +165,6 @@ public class PlayerController : MonoBehaviour
         BRTire.transform.Rotate(rotationInDegrees, 0, 0);
         MLTire.transform.Rotate(rotationInDegrees, 0, 0);
         MRTire.transform.Rotate(rotationInDegrees, 0, 0);
-        string[] rowDataTemp = new string[12];
-        rowDataTemp[0] = (((FLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[1] = (((FLTire.transform.position.x*-1)+frontTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[2] = (((FRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[3] = (((FRTire.transform.position.x*-1)-frontTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[4] = (((MLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[5] = (((MLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[6] = (((MRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[7] = (((MRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[8] = (((BLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[9] = (((BLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowData.Add(rowDataTemp);
-        if ((Truck.transform.position.z) >= 640 && writingFlag == true) {
-            writingFlag = false;
-            string[][] output = new string[rowData.Count][];
-
-        for(int i = 0; i < output.Length; i++){
-            output[i] = rowData[i];
-        }
-
-        int     length         = output.GetLength(0);
-        string     delimiter     = ",";
-
-        StringBuilder sb = new StringBuilder();
-        
-        for (int index = 0; index < length; index++)
-            sb.AppendLine(string.Join(delimiter, output[index]));
-        
-        
-        string filePath = getPath();
-
-        StreamWriter outStream = System.IO.File.CreateText(filePath);
-        outStream.WriteLine(sb);
-        outStream.Close();
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #elif UNITY_WEBPLAYER
-        Application.OpenURL(webplayerQuitURL);
-        #else
-        Application.Quit();
-        #endif
-        }
 
         if (Input.GetKey(KeyCode.Alpha1)) {
             cameraSwitch(1);

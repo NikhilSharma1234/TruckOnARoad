@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         rowDataTemp[6] = (((MRTire.transform.position.z)/10)+61).ToString("0.00");
         rowDataTemp[7] = (((MRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[8] = (((BLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[9] = (((BLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[9] = (((BLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
         rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowData.Add(rowDataTemp);

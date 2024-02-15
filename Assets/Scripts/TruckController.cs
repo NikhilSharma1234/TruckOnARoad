@@ -13,19 +13,6 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     private float movementZ;
     public float speed = 0;
-
-    public Camera Camera1;
-    public Camera Camera2;
-    public Camera Camera3;
-    public Camera Camera4;
-    public Camera Camera5;
-    public Camera Camera6;
-    public Camera Camera7;
-    public Camera Camera8;
-    public Camera Camera9;
-    public Camera Camera10;
-    public Camera Camera11;
-    public Camera Camera12;
     public GameObject BLTire;
     public GameObject BRTire;
     public GameObject FLTire;
@@ -38,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public GameObject TruckBody;
     private bool writingFlag;
     private List<string[]> rowData = new List<string[]>();
-    private Camera[] cameraList = new Camera[12];
+    public Camera[] cameraList;
     public int activeCameraNumber;
 
     // Start is called before the first frame update
@@ -47,30 +34,16 @@ public class PlayerController : MonoBehaviour
         // Get rigid body component from truck
         rb = GetComponent<Rigidbody>();
 
-        // Populate camera list Camera List
-        cameraList[0] = Camera1;
-        cameraList[1] = Camera2;
-        cameraList[2] = Camera3;
-        cameraList[3] = Camera4;
-        cameraList[4] = Camera5;
-        cameraList[5] = Camera6;
-        cameraList[6] = Camera7;
-        cameraList[7] = Camera8;
-        cameraList[8] = Camera9;
-        cameraList[9] = Camera10;
-        cameraList[10] = Camera11;
-        cameraList[11] = Camera12;
-
         // Set desired camera to be active
         cameraSwitch(activeCameraNumber);
 
         // Get half of front tire width
         Renderer FLTireRenderer = FLTire.GetComponent<Renderer>();
-        frontTireHalfWidth = (FLTireRenderer.bounds.size.x/2);
+        frontTireHalfWidth = (FLTireRenderer.bounds.size.x / 2);
 
         // Get half of middle and back tire width (they are equal in size)
         Renderer MLTireRenderer = MLTire.GetComponent<Renderer>();
-        rearAndMiddleTireHalfWidth = (MLTireRenderer.bounds.size.x/2);
+        rearAndMiddleTireHalfWidth = (MLTireRenderer.bounds.size.x / 2);
 
         writingFlag = true;
         // Creating First row of titles manually..
@@ -95,36 +68,38 @@ public class PlayerController : MonoBehaviour
     void RepeatingFunction()
     {
         string[] rowDataTemp = new string[12];
-        rowDataTemp[0] = (((FLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[1] = (((FLTire.transform.position.x*-1)+frontTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[2] = (((FRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[3] = (((FRTire.transform.position.x*-1)-frontTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[4] = (((MLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[5] = (((MLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[6] = (((MRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[7] = (((MRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[8] = (((BLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[9] = (((BLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
-        rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[0] = (((FLTire.transform.position.z) / 10) + 61).ToString("0.00");
+        rowDataTemp[1] = (((FLTire.transform.position.x * -1) + frontTireHalfWidth) / 10).ToString("0.00");
+        rowDataTemp[2] = (((FRTire.transform.position.z) / 10) + 61).ToString("0.00");
+        rowDataTemp[3] = (((FRTire.transform.position.x * -1) - frontTireHalfWidth) / 10).ToString("0.00");
+        rowDataTemp[4] = (((MLTire.transform.position.z) / 10) + 61).ToString("0.00");
+        rowDataTemp[5] = (((MLTire.transform.position.x * -1) + rearAndMiddleTireHalfWidth) / 10).ToString("0.00");
+        rowDataTemp[6] = (((MRTire.transform.position.z) / 10) + 61).ToString("0.00");
+        rowDataTemp[7] = (((MRTire.transform.position.x * -1) - rearAndMiddleTireHalfWidth) / 10).ToString("0.00");
+        rowDataTemp[8] = (((BLTire.transform.position.z) / 10) + 61).ToString("0.00");
+        rowDataTemp[9] = (((BLTire.transform.position.x * -1) - rearAndMiddleTireHalfWidth) / 10).ToString("0.00");
+        rowDataTemp[10] = (((BRTire.transform.position.z) / 10) + 61).ToString("0.00");
+        rowDataTemp[11] = (((BRTire.transform.position.x * -1) - rearAndMiddleTireHalfWidth) / 10).ToString("0.00");
         rowData.Add(rowDataTemp);
-        if ((Truck.transform.position.z) >= 640 && writingFlag == true) {
-                writingFlag = false;
-                string[][] output = new string[rowData.Count][];
+        if ((Truck.transform.position.z) >= 640 && writingFlag == true)
+        {
+            writingFlag = false;
+            string[][] output = new string[rowData.Count][];
 
-            for(int i = 0; i < output.Length; i++){
+            for (int i = 0; i < output.Length; i++)
+            {
                 output[i] = rowData[i];
             }
 
-            int     length         = output.GetLength(0);
-            string     delimiter     = ",";
+            int length = output.GetLength(0);
+            string delimiter = ",";
 
             StringBuilder sb = new StringBuilder();
-            
+
             for (int index = 0; index < length; index++)
                 sb.AppendLine(string.Join(delimiter, output[index]));
-            
-            
+
+
             string filePath = getPath();
 
             StreamWriter outStream = System.IO.File.CreateText(filePath);
@@ -141,7 +116,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // Following method is used to retrive the relative path as device platform
-    private string getPath(){
+    private string getPath()
+    {
         #if UNITY_EDITOR
         return Application.dataPath +"/CSV/"+"Saved_data"+activeCameraNumber+".csv";
         #elif UNITY_ANDROID
@@ -149,8 +125,59 @@ public class PlayerController : MonoBehaviour
         #elif UNITY_IPHONE
         return Application.persistentDataPath+"/"+"Saved_data"+activeCameraNumber+".csv";
         #else
-        return Application.dataPath +"/"+"Saved_data"+activeCameraNumber+".csv";
+        return Application.dataPath + "/" + "Saved_data" + activeCameraNumber + ".csv";
         #endif
+    }
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            cameraSwitch(1);
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            cameraSwitch(2);
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            cameraSwitch(3);
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            cameraSwitch(4);
+        }
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            cameraSwitch(5);
+        }
+        if (Input.GetKey(KeyCode.Alpha6))
+        {
+            cameraSwitch(6);
+        }
+        if (Input.GetKey(KeyCode.Alpha7))
+        {
+            cameraSwitch(7);
+        }
+        if (Input.GetKey(KeyCode.Alpha8))
+        {
+            cameraSwitch(8);
+        }
+        if (Input.GetKey(KeyCode.Alpha9))
+        {
+            cameraSwitch(9);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            cameraSwitch(10);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            cameraSwitch(11);
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            cameraSwitch(12);
+        }
     }
 
     void FixedUpdate()
@@ -165,49 +192,16 @@ public class PlayerController : MonoBehaviour
         BRTire.transform.Rotate(rotationInDegrees, 0, 0);
         MLTire.transform.Rotate(rotationInDegrees, 0, 0);
         MRTire.transform.Rotate(rotationInDegrees, 0, 0);
-
-        if (Input.GetKey(KeyCode.Alpha1)) {
-            cameraSwitch(1);
-        }
-        if (Input.GetKey(KeyCode.Alpha2)) {
-            cameraSwitch(2);
-        }
-        if (Input.GetKey(KeyCode.Alpha3)) {
-            cameraSwitch(3);
-        }
-        if (Input.GetKey(KeyCode.Alpha4)) {
-            cameraSwitch(4);
-        }
-        if (Input.GetKey(KeyCode.Alpha5)) {
-            cameraSwitch(5);
-        }
-        if (Input.GetKey(KeyCode.Alpha6)) {
-            cameraSwitch(6);
-        }
-        if (Input.GetKey(KeyCode.Alpha7)) {
-            cameraSwitch(7);
-        }
-        if (Input.GetKey(KeyCode.Alpha8)) {
-            cameraSwitch(8);
-        }
-        if (Input.GetKey(KeyCode.Alpha9)) {
-            cameraSwitch(9);
-        }
-        if (Input.GetKey(KeyCode.Q)) {
-            cameraSwitch(10);
-        }
-        if (Input.GetKey(KeyCode.W)) {
-            cameraSwitch(11);
-        }
-        if (Input.GetKey(KeyCode.E)) {
-            cameraSwitch(12);
-        }
     }
 
-    void cameraSwitch(int cameraNumber) {
-        for(int i = 0; i < 12; i++){
+    void cameraSwitch(int cameraNumber)
+    {
+        int cameraCount = cameraList.Length;
+        for (int i = 0; i < cameraCount; i++)
+        {
             Camera currentCamera = cameraList[i];
-            if (cameraNumber == (i + 1)) {
+            if (cameraNumber == (i + 1))
+            {
                 currentCamera.enabled = true;
                 continue;
             }

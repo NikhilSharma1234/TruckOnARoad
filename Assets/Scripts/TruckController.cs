@@ -163,6 +163,22 @@ public class PlayerController : MonoBehaviour
         {
             cameraSwitch(12);
         }
+        if (Input.GetKey(KeyCode.R))
+        {
+            cameraSwitch(13);
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
+            cameraSwitch(14);
+        }
+        if (Input.GetKey(KeyCode.Y))
+        {
+            cameraSwitch(15);
+        }
+        if (Input.GetKey(KeyCode.U))
+        {
+            cameraSwitch(16);
+        }
     }
 
     // Following method is used to retrive the relative path as device platform
@@ -178,6 +194,8 @@ public class PlayerController : MonoBehaviour
         #endif
     }
 
+    //  Fixed update runs every 0.02 seconds (50 times). If speed is 0.4,
+    //  that means the object moves 2 meters/second
     void FixedUpdate()
     {
         Truck.transform.Translate(Vector3.forward * speed);

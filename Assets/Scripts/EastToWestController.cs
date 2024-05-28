@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System;
 
-public class PlayerController : MonoBehaviour
+public class EastToWestController : MonoBehaviour
 {
     private Rigidbody rb;
     private float movementX;
@@ -69,19 +69,19 @@ public class PlayerController : MonoBehaviour
     {
         string[] rowDataTemp = new string[12];
         rowDataTemp[0] = (((FLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[1] = (((FLTire.transform.position.x*-1)+frontTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[1] = (((FLTire.transform.position.x*-1)-frontTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[2] = (((FRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[3] = (((FRTire.transform.position.x*-1)-frontTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[3] = (((FRTire.transform.position.x*-1)+frontTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[4] = (((MLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[5] = (((MLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[5] = (((MLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[6] = (((MRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[7] = (((MRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[7] = (((MRTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[8] = (((BLTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[9] = (((BLTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[9] = (((BLTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowDataTemp[10] = (((BRTire.transform.position.z)/10)+61).ToString("0.00");
-        rowDataTemp[11] = (((BRTire.transform.position.x*-1)-rearAndMiddleTireHalfWidth)/10).ToString("0.00");
+        rowDataTemp[11] = (((BRTire.transform.position.x*-1)+rearAndMiddleTireHalfWidth)/10).ToString("0.00");
         rowData.Add(rowDataTemp);
-        if ((Truck.transform.position.z) >= 640 && writingFlag == true) {
+        if (((Truck.transform.position.z) <= (-640)) && (writingFlag == true)) {
                 writingFlag = false;
                 string[][] output = new string[rowData.Count][];
 

@@ -184,13 +184,13 @@ public class EastToWestController : MonoBehaviour
     // Following method is used to retrive the relative path as device platform
     private string getPath(){
         #if UNITY_EDITOR
-        return Application.dataPath +"/CSV/"+"Saved_data"+activeCameraNumber+".csv";
+        return Application.dataPath +"/CSV/"+"EastToWest"+activeCameraNumber+".csv";
         #elif UNITY_ANDROID
-        return Application.persistentDataPath+"Saved_data"+activeCameraNumber+".csv";
+        return Application.persistentDataPath+"EastToWest"+activeCameraNumber+".csv";
         #elif UNITY_IPHONE
-        return Application.persistentDataPath+"/"+"Saved_data"+activeCameraNumber+".csv";
+        return Application.persistentDataPath+"/"+"EastToWest"+activeCameraNumber+".csv";
         #else
-        return Application.dataPath +"/"+"Saved_data"+activeCameraNumber+".csv";
+        return Application.dataPath +"/"+"EastToWest"+activeCameraNumber+".csv";
         #endif
     }
 

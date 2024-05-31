@@ -4783,45 +4783,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1438586137985966937, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
   m_PrefabInstance: {fileID: 1292341400}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &817235186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817235184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a1176d06bd08d40a0a7fbe8d338ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4.4704
-  BLTire: {fileID: 1523170911}
-  BRTire: {fileID: 22332550}
-  FLTire: {fileID: 1738457723}
-  FRTire: {fileID: 1890759028}
-  MLTire: {fileID: 1113790720}
-  MRTire: {fileID: 709035557}
-  Truck: {fileID: 817235184}
-  TruckBody: {fileID: 109032333}
-  cameraList:
-  - {fileID: 1232227945}
-  - {fileID: 1349804936}
-  - {fileID: 1117438693}
-  - {fileID: 1885059193}
-  - {fileID: 1377394890}
-  - {fileID: 764931446}
-  - {fileID: 1313834897}
-  - {fileID: 402039505}
-  - {fileID: 762990952}
-  - {fileID: 83683557}
-  - {fileID: 622825466}
-  - {fileID: 1051758793}
-  - {fileID: 1461704219}
-  - {fileID: 1468979616}
-  - {fileID: 739701836}
-  - {fileID: 1398227500}
-  activeCameraNumber: 16
 --- !u!114 &817235187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4852,6 +4813,45 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &817235189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817235184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c8f2953bc96864a83aa28b99996816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.44704
+  BLTire: {fileID: 1523170911}
+  BRTire: {fileID: 22332550}
+  FLTire: {fileID: 1738457723}
+  FRTire: {fileID: 1890759028}
+  MLTire: {fileID: 1113790720}
+  MRTire: {fileID: 709035557}
+  Truck: {fileID: 817235184}
+  TruckBody: {fileID: 109032333}
+  cameraList:
+  - {fileID: 1232227945}
+  - {fileID: 1349804936}
+  - {fileID: 1117438693}
+  - {fileID: 1885059193}
+  - {fileID: 1377394890}
+  - {fileID: 764931446}
+  - {fileID: 1313834897}
+  - {fileID: 402039505}
+  - {fileID: 762990952}
+  - {fileID: 83683557}
+  - {fileID: 622825466}
+  - {fileID: 1051758793}
+  - {fileID: 1461704219}
+  - {fileID: 1468979616}
+  - {fileID: 739701836}
+  - {fileID: 1398227500}
+  activeCameraNumber: 16
 --- !u!1 &817673329
 GameObject:
   m_ObjectHideFlags: 0
@@ -6874,45 +6874,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1438586137985966937, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
   m_PrefabInstance: {fileID: 1305355590}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1172525123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172525121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a1176d06bd08d40a0a7fbe8d338ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
-  BLTire: {fileID: 1362405388}
-  BRTire: {fileID: 2105545001}
-  FLTire: {fileID: 1758022433}
-  FRTire: {fileID: 482993276}
-  MLTire: {fileID: 208446413}
-  MRTire: {fileID: 1976714176}
-  Truck: {fileID: 1172525121}
-  TruckBody: {fileID: 114509476}
-  cameraList:
-  - {fileID: 181868584}
-  - {fileID: 1909259802}
-  - {fileID: 2037652612}
-  - {fileID: 1957487857}
-  - {fileID: 112797030}
-  - {fileID: 1658536354}
-  - {fileID: 337626543}
-  - {fileID: 1936020032}
-  - {fileID: 120475893}
-  - {fileID: 15723441}
-  - {fileID: 1709918096}
-  - {fileID: 1099987554}
-  - {fileID: 857940362}
-  - {fileID: 1895928572}
-  - {fileID: 1931420083}
-  - {fileID: 1603818881}
-  activeCameraNumber: 2
 --- !u!114 &1172525124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6943,6 +6904,45 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1172525126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172525121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a1176d06bd08d40a0a7fbe8d338ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.44704
+  BLTire: {fileID: 1362405388}
+  BRTire: {fileID: 2105545001}
+  FLTire: {fileID: 1758022433}
+  FRTire: {fileID: 482993276}
+  MLTire: {fileID: 208446413}
+  MRTire: {fileID: 1976714176}
+  Truck: {fileID: 1172525121}
+  TruckBody: {fileID: 114509476}
+  cameraList:
+  - {fileID: 1232227945}
+  - {fileID: 1349804936}
+  - {fileID: 1117438693}
+  - {fileID: 1885059193}
+  - {fileID: 1377394890}
+  - {fileID: 764931446}
+  - {fileID: 1313834897}
+  - {fileID: 402039505}
+  - {fileID: 762990952}
+  - {fileID: 83683557}
+  - {fileID: 622825466}
+  - {fileID: 1051758793}
+  - {fileID: 1461704219}
+  - {fileID: 1468979616}
+  - {fileID: 739701836}
+  - {fileID: 1398227500}
+  activeCameraNumber: 16
 --- !u!1 &1187623995
 GameObject:
   m_ObjectHideFlags: 0
@@ -7735,6 +7735,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 946166156890554872, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
+      propertyPath: m_Name
+      value: Truck Body 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1008474544437884304, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -7809,7 +7813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457866928824433989, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       propertyPath: m_Name
-      value: Rear_Left_Wheel
+      value: Back_Left_Wheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613189228159862905, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
+      propertyPath: m_Name
+      value: Back_Right_Wheel
       objectReference: {fileID: 0}
     - target: {fileID: 1674266003930866477, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       propertyPath: m_Enabled
@@ -7864,7 +7872,7 @@ PrefabInstance:
       addedObject: {fileID: 817235187}
     - targetCorrespondingSourceObject: {fileID: 1782636917645654499, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 817235186}
+      addedObject: {fileID: 817235189}
   m_SourcePrefab: {fileID: 100100000, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
 --- !u!1 &1293565606
 GameObject:
@@ -8094,6 +8102,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 946166156890554872, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
+      propertyPath: m_Name
+      value: Truck Body 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1008474544437884304, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -8168,7 +8180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457866928824433989, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       propertyPath: m_Name
-      value: Rear_Left_Wheel
+      value: Back_Left_Wheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613189228159862905, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
+      propertyPath: m_Name
+      value: Back_Right_Wheel
       objectReference: {fileID: 0}
     - target: {fileID: 1674266003930866477, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       propertyPath: m_Enabled
@@ -8223,7 +8239,7 @@ PrefabInstance:
       addedObject: {fileID: 1172525124}
     - targetCorrespondingSourceObject: {fileID: 1782636917645654499, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1172525123}
+      addedObject: {fileID: 1172525126}
   m_SourcePrefab: {fileID: 100100000, guid: 5d1170c0b56e8484796a56a7857eacd8, type: 3}
 --- !u!1 &1313834896
 GameObject:
@@ -12496,7 +12512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1787700216
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -12590,7 +12606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &1790401202
 PlayableDirector:
   m_ObjectHideFlags: 0

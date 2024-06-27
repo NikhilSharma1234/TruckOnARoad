@@ -235,8 +235,8 @@ public class ChangingLanes : MonoBehaviour
                     float rotationInRadians1 = distanceTraveled1 / (frontTireHalfWidth);
                     float rotationInDegrees1 = rotationInRadians1 * Mathf.Rad2Deg;
                     if (FLTire.transform.localRotation.y != 0) {
-                        FLTire.transform.Rotate(0,  0.25f, 0);
-                        FRTire.transform.Rotate(0,  0.25f, 0);
+                        FLTire.transform.Rotate(0,  0.19f, 0);
+                        FRTire.transform.Rotate(0,  0.19f, 0);
                     }
                 }
                 Truck.transform.Translate(Vector3.forward * speed);
